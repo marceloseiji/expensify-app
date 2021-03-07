@@ -60,7 +60,6 @@ export const editExpense = (id, updates) => {
 };
 
 export const startEditExpense = (id, updates) => {
-  console.log("id: ", id);
   return (dispatch, getState) => {
     const uid = getState().auth.uid;
     return database
