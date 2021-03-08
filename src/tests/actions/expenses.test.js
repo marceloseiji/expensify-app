@@ -59,6 +59,9 @@ test("should update an expense from firebase", (done) => {
   const store = createMockStore(defaultAuthState);
   const id = expenses[2].id;
   const updates = {
+    note: "",
+    amount: 0,
+    createdAt: 0,
     description: "Description updated!",
   };
   store

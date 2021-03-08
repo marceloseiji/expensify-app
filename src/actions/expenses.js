@@ -18,6 +18,7 @@ export const startAddExpense = (expenseData = {}) => {
       createdAt = 0,
     } = expenseData;
     const expense = { description, note, amount, createdAt };
+    console.log('expense: ', expense)
     return database
       .ref(`users/${uid}/expenses`)
       .push(expense)
@@ -62,11 +63,18 @@ export const editExpense = (id, updates) => {
 export const startEditExpense = (id, updates) => {
   return (dispatch, getState) => {
     const uid = getState().auth.uid;
+    const {
+      description = "",
+      note = "",
+      amount = 0,
+      createdAt = 0,
+    } = updates;
+    const sendUpdate = { description, note, amount, createdAt };
     return database
       .ref(`users/${uid}/expenses/${id}`)
-      .update(updates)
+      .update(sendUpdate)
       .then(() => {
-        dispatch(editExpense(id, updates));
+        dispatch(editExpense(id, sendUpdate));
       });
   };
 };
